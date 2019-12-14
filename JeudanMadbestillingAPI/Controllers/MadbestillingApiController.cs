@@ -96,16 +96,16 @@ namespace JeudanMadbestillingAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<JeudanMadbestilling.Models.Madbestillings>> DeleteMadbestilling(int id)
         {
-            var cat = await _context.Madbestillings.FindAsync(id);
-            if (cat == null)
+            var madbestillings = await _context.Madbestillings.FindAsync(id);
+            if (madbestillings == null)
             {
                 return NotFound();
             }
 
-            _context.Madbestillings.Remove(cat);
+            _context.Madbestillings.Remove(madbestillings);
             await _context.SaveChangesAsync();
 
-            return cat;
+            return madbestillings;
         }
 
         private bool MadbestillingExists(int id)

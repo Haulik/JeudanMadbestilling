@@ -1,0 +1,55 @@
+﻿@model JeudanMadbestilling.Models.ViewModels.MadmenuBestillingVM
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>MadMenu</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MadMenu.Menu)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MadMenu.Menu)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MadMenu.Med_Hjem_Køkken)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MadMenu.Med_Hjem_Køkken)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MadMenu.Dato)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MadMenu.Dato)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MadMenu.Uge)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MadMenu.Uge)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MadMenu.UgeNavn)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MadMenu.UgeNavn)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MadMenu.MenuStatus)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MadMenu.MenuStatus)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.MadMenu.MenuId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

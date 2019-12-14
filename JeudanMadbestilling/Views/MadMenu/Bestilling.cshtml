@@ -1,0 +1,147 @@
+﻿@model JeudanMadbestilling.Models.ViewModels.MadmenuBestillingVM;
+
+
+
+@using Microsoft.AspNetCore.Identity
+@using JeudanMadbestilling.Areas.Identity.Data
+@using Microsoft.Data.SqlClient;
+
+@inject SignInManager<MadbestillingJeudanUser> SignInManager
+@inject UserManager<MadbestillingJeudanUser> UserManager
+
+
+
+
+
+@{
+    ViewData["Title"] = "Bestilling";
+}
+
+
+<div class="text-center">
+    <hr class="new1">
+    <h1 class="display-4">Menu og bestillinger</h1>
+    <hr class="new2">
+    <br>
+</div>
+
+@{int rowcount = 0;}
+@{int BrugerRowcount = 0;}
+@{int Count = 15;}
+@{int MinusCount = 0;}
+@{int BrugerBestillinger;}
+
+
+
+<div class="container">
+    <div class="row">
+
+        @foreach (var item in Model.MenuIE)
+        {
+
+            @using (var con = new SqlConnection("Server=(localdb)\\mssqllocaldb;Database=MvcMadMenuContext-2;Trusted_Connection=True;MultipleActiveResultSets=true"))
+            {
+                con.Open();
+                string query = "SELECT COUNT(*) FROM Madbestillings WHERE Menuid = " + @Convert.ToInt32(item.MenuId).ToString();
+                string query2 = "SELECT COUNT(*) FROM Madbestillings WHERE Menuid = " + @Convert.ToInt32(item.MenuId).ToString() + " AND Bruger = '" + @UserManager.GetUserName(User) + "'";
+                string query3 = "SELECT SUM(AntalBestillinger) FROM Madbestillings WHERE Menuid = " + @Convert.ToInt32(item.MenuId).ToString();
+                string query4 = "SELECT SUM(AntalBestillinger) FROM Madbestillings WHERE Bruger = '" + @UserManager.GetUserName(User) + "' AND Menuid = " + @Convert.ToInt32(item.MenuId).ToString();
+
+                using (var cmd = new SqlCommand(query, con))
+                {
+                    var rowsAmount = (int)cmd.ExecuteScalar(); // get the value of the count
+
+                    rowcount = rowsAmount;
+
+                }
+
+                using (var cmd = new SqlCommand(query2, con))
+                {
+                    var rowsAmount = (int)cmd.ExecuteScalar(); // get the value of the count
+
+                    BrugerRowcount = rowsAmount;
+
+
+                }
+
+                if (rowcount != 0)
+                {
+
+                    using (var cmd = new SqlCommand(query3, con))
+                    {
+                        var rowsAmount = (int)cmd.ExecuteScalar(); // get the value of the count
+
+                        Count = 15 - rowsAmount;
+
+                    }
+
+                }
+                else
+                {
+                    Count = 15;
+                }
+
+                if (BrugerRowcount != 0)
+                {
+                    using (var cmd = new SqlCommand(query4, con))
+                    {
+                        var rowsAmount = (int)cmd.ExecuteScalar(); // get the value of the count
+
+                        BrugerBestillinger = rowsAmount;
+                        MinusCount = 0 - rowsAmount;
+
+                    }
+                }
+                else
+                {
+                    BrugerBestillinger = 0;
+                    MinusCount = 0;
+
+                }
+
+            }
+
+
+            <div class="col-sm-12 col-md-6 col-lg-5 col-xl-4">
+
+
+                <div class="card bg-light mb-3" style="max-width: 20rem; height: 15rem;">
+                    <div class="card-header"><b><font color="black">@Html.DisplayFor(modelItem => item.UgeNavn) @Html.DisplayFor(modelItem => item.Dato) | </font><font color="#e0b40e">Bestillinger: @BrugerBestillinger </font></b></div>
+                    <div class="card-body">
+                        <h6 class="card-title"><font color="black">@Html.DisplayFor(modelItem => item.Menu) </font></h6>
+                        <font color="black">Antal:</font>
+
+                        <form asp-controller="Madbestillings" asp-action="Create">
+
+
+                            <input asp-for="Madbestillings.MenuId" value="@Convert.ToInt32(item.MenuId).ToString()" class="form-control" hidden />
+                            <input asp-for="Madbestillings.MenuDato" value="@Convert.ToDateTime(item.Dato).ToString("yyyy/MM/dd")" class="form-control" hidden />
+                            <input asp-for="Madbestillings.MenuTekst" class="form-control" value="@Convert.ToString(item.Menu)" hidden />
+                            <input asp-for="Madbestillings.AntalBestillinger" value="0" min="@MinusCount" max="@Count" oninput="getDate()" />
+                            <input asp-for="Madbestillings.BestilingsType" class="form-control" value="Dagbestilling" hidden />
+                            <input asp-for="Madbestillings.BestillingsDateTime" value="@DateTime.Today.ToString("yyyy/MM/dd")" class="form-control" hidden />
+                            <input asp-for="Madbestillings.Bruger" class="form-control" value="@UserManager.GetUserName(User)" hidden />
+
+                            <input type="submit" onclick="getDate()" value="BEKRÆFT ANTAL" class="button2" />
+
+                        </form>
+
+                        <p><font color="black">@Count Menuer tilbage</font></p>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        }
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

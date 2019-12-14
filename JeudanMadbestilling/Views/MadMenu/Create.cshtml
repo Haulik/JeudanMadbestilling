@@ -1,0 +1,70 @@
+﻿@model JeudanMadbestilling.Models.ViewModels.MadmenuBestillingVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+
+
+<div class="text-center">
+    <hr class="new1">
+    <h1 class="display-4">Ny Menu</h1>
+    <hr class="new2">
+</div>
+<h4>MadMenu</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MadMenu.Menu" class="control-label"></label>
+                <input asp-for="MadMenu.Menu" class="form-control" id="Menu" oninput="madTilHjem()" />
+                <span asp-validation-for="MadMenu.Menu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MadMenu.Med_Hjem_Køkken" class="control-label"></label>
+                <input asp-for="MadMenu.Med_Hjem_Køkken" class="form-control" id="HjemMad" />
+                <span asp-validation-for="MadMenu.Med_Hjem_Køkken" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MadMenu.Dato" class="control-label"></label>
+                <input asp-for="MadMenu.Dato" value="" class="form-control" id="dateInput" oninput="printWeekNumber()" />
+                <span asp-validation-for="MadMenu.Dato" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MadMenu.Uge" class="control-label"></label>
+                <input asp-for="MadMenu.Uge" class="form-control" id="uge" readonly />
+                <span asp-validation-for="MadMenu.Uge" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MadMenu.UgeNavn" class="control-label"></label>
+                <input asp-for="MadMenu.UgeNavn" class="form-control" id="ugeNavn" readonly />
+                <span asp-validation-for="MadMenu.UgeNavn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MadMenu.MenuStatus" class="control-label"></label>
+                <input asp-for="MadMenu.MenuStatus" class="form-control" id="Status" readonly />
+                <span asp-validation-for="MadMenu.MenuStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

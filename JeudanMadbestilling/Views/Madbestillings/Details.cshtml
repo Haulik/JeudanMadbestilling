@@ -1,0 +1,61 @@
+﻿@model JeudanMadbestilling.Models.ViewModels.MadmenuBestillingVM
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Madbestillings</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Madbestillings.Menu)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Madbestillings.Menu.MenuId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Madbestillings.MenuDato)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Madbestillings.MenuDato)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Madbestillings.MenuTekst)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Madbestillings.MenuTekst)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Madbestillings.AntalBestillinger)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Madbestillings.AntalBestillinger)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Madbestillings.BestilingsType)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Madbestillings.BestilingsType)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Madbestillings.BestillingsDateTime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Madbestillings.BestillingsDateTime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Madbestillings.Bruger)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Madbestillings.Bruger)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Madbestillings.MadbestillingId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

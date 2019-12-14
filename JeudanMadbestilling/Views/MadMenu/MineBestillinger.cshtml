@@ -1,0 +1,61 @@
+﻿@model IEnumerable<JeudanMadbestilling.Models.MadMenu>
+
+@{
+    ViewData["Title"] = "MineBestillinger";
+}
+
+
+<div class="text-center">
+    <hr class="new1">
+    <h1 class="display-4">Mine Bestillinger</h1>
+    <hr class="new2">
+    <br>
+</div>
+<table class="table">
+
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Dato)
+            </th>
+            <th>
+                Mad
+            </th>
+            <th>
+                Antal
+            </th>
+
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+
+
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UgeNavn) @Html.DisplayFor(modelItem => item.Dato)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Med_Hjem_Køkken)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Uge)
+                </td>
+
+
+            </tr>
+        }
+    </tbody>
+
+
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</table>

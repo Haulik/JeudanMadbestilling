@@ -1,0 +1,76 @@
+﻿@model JeudanMadbestilling.Models.ViewModels.MadmenuBestillingVM
+
+@using Microsoft.AspNetCore.Identity
+@using JeudanMadbestilling.Areas.Identity.Data
+@using JeudanMadbestilling.Models.ViewModels
+
+@inject SignInManager<MadbestillingJeudanUser> SignInManager
+@inject UserManager<MadbestillingJeudanUser> UserManager
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<h1>Create</h1>
+
+<h4>Madbestillings</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div>
+                
+                <label asp-for="Madbestillings.MenuId" class="control-label"></label>
+                <select asp-for="Madbestillings.MenuId" class="form-control" asp-items="Model.MenuselectList"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Madbestillings.MenuDato" class="control-label"></label>
+                <input asp-for="Madbestillings.MenuDato" value="" class="form-control" id="date" />
+                <span asp-validation-for="Madbestillings.MenuDato" class="text-danger"></span>
+            </div>
+          
+
+            <div class="form-group">
+                <label asp-for="Madbestillings.MenuTekst" class="control-label"></label>
+                <input asp-for="Madbestillings.MenuTekst" class="form-control" />
+                <span asp-validation-for="Madbestillings.MenuTekst" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Madbestillings.AntalBestillinger" class="control-label"></label>
+                <input asp-for="Madbestillings.AntalBestillinger" class="form-control" oninput="getDate()" />
+                <span asp-validation-for="Madbestillings.AntalBestillinger" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Madbestillings.BestilingsType" class="control-label"></label>
+                <input asp-for="Madbestillings.BestilingsType" class="form-control" />
+                <span asp-validation-for="Madbestillings.BestilingsType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Madbestillings.BestillingsDateTime" class="control-label"></label>
+                <input asp-for="Madbestillings.BestillingsDateTime" value="" class="form-control" id="date2" />
+                <span asp-validation-for="Madbestillings.BestillingsDateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Madbestillings.Bruger" class="control-label"></label>
+                <input asp-for="Madbestillings.Bruger" class="form-control" />
+                <span asp-validation-for="Madbestillings.Bruger" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

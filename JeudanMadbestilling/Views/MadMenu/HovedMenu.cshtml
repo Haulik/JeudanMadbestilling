@@ -1,0 +1,32 @@
+﻿@model IEnumerable<JeudanMadbestilling.Models.MadMenu>
+
+
+@{
+    ViewData["Title"] = "HovedMenu";
+}
+
+
+
+<div class="text-center">
+    <hr class="new1">
+    <h1 class="display-4">Madbestilling</h1>
+    <hr class="new2">
+
+    @foreach (var item in Model.Where(i => i.Dato.ToString("dd/MM/yyyy") == DateTime.Today.ToString("dd/MM/yyyy")))
+    {
+        <p><font size="4">@Html.DisplayFor(modelItem => item.Menu)</font></p>
+    }
+    <br>
+    <br>
+    <br>
+    <div class="form-group">
+        <a asp-area="" asp-controller="Madmenu" asp-action="bestilling" ><input type="button" class="button button1" value="MENU OG BESTILLING" /></a>
+      
+    </div>
+    <div class="form-group">
+        <a asp-area="" asp-controller="Madbestillings" asp-action="MineBestillinger"><input type="button" class="button button1" value="MINE BESTILLINGER" /></a>
+    </div>
+    <div class="form-group">
+        <a asp-area="" asp-controller="Madmenu" asp-action="Info"><input type="button" class="button button1" value="INFO" /></a>
+    </div>
+</div>

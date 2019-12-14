@@ -1,0 +1,4 @@
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="/Identity" Path="C:\Users\thoma\.nuget\packages\microsoft.aspnetcore.identity.ui\3.1.0\staticwebassets\V4" />
+  <ContentRoot BasePath="_content/JeudanMadbestilling" Path="C:\Users\thoma\source\repos\JeudanMadbestilling\JeudanMadbestilling\wwwroot\" />
+</StaticWebAssets>

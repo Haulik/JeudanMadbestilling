@@ -1,0 +1,66 @@
+﻿@model IEnumerable<JeudanMadbestilling.Models.MadMenu>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Menu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Med_Hjem_Køkken)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dato)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Uge)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UgeNavn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuStatus)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Menu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Med_Hjem_Køkken)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dato)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Uge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UgeNavn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuStatus)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MenuId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MenuId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MenuId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,71 @@
+﻿@model IEnumerable<JeudanMadbestilling.Models.Madbestillings>
+
+@using Microsoft.AspNetCore.Identity
+@using JeudanMadbestilling.Areas.Identity.Data
+
+@inject SignInManager<MadbestillingJeudanUser> SignInManager
+@inject UserManager<MadbestillingJeudanUser> UserManager
+
+@{
+    ViewData["Title"] = "MineBestillinger";
+}
+
+
+<div class="text-center">
+    <hr class="new1">
+    <h1 class="display-4">Mine Bestillinger</h1>
+    <hr class="new2">
+    <br>
+</div>
+<table class="table">
+
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuDato)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuTekst)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BestilingsType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AntalBestillinger)
+            </th>
+
+
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model.Where(b => b.Bruger == @UserManager.GetUserName(User)))
+        {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuDato)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuTekst)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.BestilingsType)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.AntalBestillinger)
+            </td>
+
+        </tr>
+        }
+    </tbody>
+
+
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</table>

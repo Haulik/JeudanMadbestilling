@@ -27,13 +27,6 @@ namespace JeudanMadbestilling.Controllers
             this.madbestillingRepository = madbestillingRepo;
 
         }
-
-        /* public MadMenuController(IMadmenuRepository repo)
-        {
-            this.madmenuRepository = repo;
-        } */
-
-
         // GET: MadMenu
         public IActionResult Index()
         {
@@ -52,15 +45,6 @@ namespace JeudanMadbestilling.Controllers
             mymodel.MenuIE = this.madmenuRepository.Get();
 
             return View(mymodel);
-        }
-
-        // GET: MadMenu/MineBestillinger
-        public IActionResult MineBestillinger()
-        {
-            List<MadMenu> madmenu = this.madmenuRepository.Get();
-
-
-            return View(madmenu.ToList());
         }
 
         // GET: MadMenu/HovedMenu
@@ -104,7 +88,6 @@ namespace JeudanMadbestilling.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create([Bind("MenuId,Menu,Med_Hjem_Køkken,Dato,Uge,UgeNavn,MenuStatus")] MadMenu madMenu)
-        //public IActionResult Create(MadmenuBestillingVM vm)
         {
             if (ModelState.IsValid)
             {

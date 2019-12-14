@@ -168,7 +168,6 @@ C:\Users\thoma\source\repos\JeudanMadbestilling\JeudanMadbestilling\obj\Debug\ne
 C:\Users\thoma\source\repos\JeudanMadbestilling\JeudanMadbestilling\obj\Debug\netcoreapp3.1\Razor\Views\MadMenu\HovedMenu.cshtml.g.cs
 C:\Users\thoma\source\repos\JeudanMadbestilling\JeudanMadbestilling\obj\Debug\netcoreapp3.1\Razor\Views\MadMenu\Index.cshtml.g.cs
 C:\Users\thoma\source\repos\JeudanMadbestilling\JeudanMadbestilling\obj\Debug\netcoreapp3.1\Razor\Views\MadMenu\Info.cshtml.g.cs
-C:\Users\thoma\source\repos\JeudanMadbestilling\JeudanMadbestilling\obj\Debug\netcoreapp3.1\Razor\Views\MadMenu\MineBestillinger.cshtml.g.cs
 C:\Users\thoma\source\repos\JeudanMadbestilling\JeudanMadbestilling\obj\Debug\netcoreapp3.1\Razor\Views\Madbestillings\Create.cshtml.g.cs
 C:\Users\thoma\source\repos\JeudanMadbestilling\JeudanMadbestilling\obj\Debug\netcoreapp3.1\Razor\Views\Madbestillings\Delete.cshtml.g.cs
 C:\Users\thoma\source\repos\JeudanMadbestilling\JeudanMadbestilling\obj\Debug\netcoreapp3.1\Razor\Views\Madbestillings\Details.cshtml.g.cs

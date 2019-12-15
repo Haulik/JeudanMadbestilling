@@ -11,7 +11,7 @@ namespace JeudanMadbestilling.Data
 {
     public class MvcMadMenuContext : DbContext
     {
-        public MvcMadMenuContext(DbContextOptions<MvcMadMenuContext> options) : base(options)
+        public MvcMadMenuContext(Microsoft.EntityFrameworkCore.DbContextOptions<MvcMadMenuContext> options) : base(options)
         {
         }
 

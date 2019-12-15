@@ -81,12 +81,17 @@ namespace JeudanMadbestilling.Controllers
         // GET: Madbestillings/Edit/5
         public IActionResult Edit(int id)
         {
-            var Madbestillings = madbestillingRepository.Get(id);
-            if (Madbestillings == null)
+            Madbestillings madbestillings = madbestillingRepository.Get(id);
+            
+            if (madbestillings == null)
             {
                 return NotFound();
             }
-            return View(Madbestillings);
+
+            MadmenuBestillingVM vm = ViewModelCreator.createMadmenuBestillingVM(madmenuRepository);
+            vm.Madbestillings = madbestillings;
+
+            return View(vm);
             // Create an edit view
             // Look up cat object from catId in the database
             // Show an edit view to the user, displaying the cat object
@@ -97,11 +102,11 @@ namespace JeudanMadbestilling.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public IActionResult Edit(Madbestillings m)
+        public IActionResult Edit(MadmenuBestillingVM vm)
         {
             if (ModelState.IsValid)
             {
-                madbestillingRepository.Save(m);
+                madbestillingRepository.Save(vm.Madbestillings);
                 // Save it to the database
                 return RedirectToAction("Index");
             }

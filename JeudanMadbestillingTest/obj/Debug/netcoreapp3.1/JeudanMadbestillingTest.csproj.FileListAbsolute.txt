@@ -218,3 +218,5 @@ C:\Users\thoma\source\repos\JeudanMadbestilling\JeudanMadbestillingTest\bin\Debu
 C:\Users\thoma\source\repos\JeudanMadbestilling\JeudanMadbestillingTest\bin\Debug\netcoreapp3.1\JeudanMadbestilling.pdb
 C:\Users\thoma\source\repos\JeudanMadbestilling\JeudanMadbestillingTest\obj\Debug\netcoreapp3.1\JeudanMadbestillingTest.dll
 C:\Users\thoma\source\repos\JeudanMadbestilling\JeudanMadbestillingTest\obj\Debug\netcoreapp3.1\JeudanMadbestillingTest.pdb
+C:\Users\thoma\source\repos\JeudanMadbestilling\JeudanMadbestillingTest\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Users\thoma\source\repos\JeudanMadbestilling\JeudanMadbestillingTest\bin\Debug\netcoreapp3.1\AutoMapper.dll

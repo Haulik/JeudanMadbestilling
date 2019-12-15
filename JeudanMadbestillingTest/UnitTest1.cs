@@ -17,7 +17,7 @@ namespace JeudanMadbestillingTest
         public void TestAddMethodWithTwoPositiveNumbers()
         {
             //Arrange - instan. classes etc.
-            var testService = new TestService();
+            var testService = new DataTestService();
 
             //Act - Call the method to test
             int result = testService.Add(2, 5);
@@ -47,7 +47,7 @@ namespace JeudanMadbestillingTest
         }
 
         [Fact]
-        public void CreatePost_ReturnsViewWithSpecies_WhenModelStateIsInvalid()
+        public void CreatePost_ReturnsViewWithSpecies_WhenModelStateIsInvalid() //madmenu
         {
             // Arrange
             var mockRepo = new Mock<IMadmenuRepository>();
@@ -55,7 +55,7 @@ namespace JeudanMadbestillingTest
             var controller = new MadMenuController(mockMenuRepo.Object, mockRepo.Object);
 
             controller.ModelState.AddModelError("Name", "Required");
-            var madmenu = new MadMenu() { MenuId = 1, Menu = "Karl Karlson something nice" };
+            var madmenu = new MadMenu() { MenuId = 1, Menu = "Råmarineret laks med beder og rygeost" };
 
             // Act
             var result = controller.Create(madmenu);
@@ -79,7 +79,7 @@ namespace JeudanMadbestillingTest
             MadMenu s = new MadMenu()
             {
                 MenuId = 1,
-                Menu = "Don't listen to scientists"
+                Menu = "Rødkålssalat med appelsin, valnød og salatost"
             };
 
             // Act
@@ -93,22 +93,75 @@ namespace JeudanMadbestillingTest
         }
 
         [Fact]
-        public void TestDeleteWorks_In_Controller()
+        public void AddNewMadbestillingToDatabase()
         {
-            //Arrange
-            var menuId = 1;
-            var mockRepo = new Mock<IMadmenuRepository>();
-            var mockMenuRepo = new Mock<IMadbestillingRepository>();
-            mockRepo.Setup(repo => repo.Delete(menuId)).Verifiable();
-            var controller = new MadMenuController(mockMenuRepo.Object, mockRepo.Object);
 
-            //Act
-            var result = controller.Delete(menuId);
 
-            //Assert
-            Assert.IsType<ViewResult>(result);
-            mockRepo.Verify();
+            IMadbestillingRepository testRepo = DataTestService.GetInMemoryRepo();
+
+            var madbestillings = new Madbestillings()
+            {
+                MenuTekst = "Burger",
+                AntalBestillinger = 1
+            };
+
+
+            testRepo.Save(madbestillings);
+
+
+            Assert.Single(testRepo.Get());
+            Assert.Equal(madbestillings.MenuTekst, testRepo.Get(1).MenuTekst);
 
         }
+
+        [Fact]
+        public void MadbestillingWithSameIDOverWritesCurrentMadbestillingInDB()
+        {
+
+            IMadbestillingRepository testrepo = DataTestService.GetInMemoryRepo();
+
+            var madbestillings = new Madbestillings()
+            {
+                MenuTekst = "Burger",
+                AntalBestillinger = 1
+            };
+
+            testrepo.Save(madbestillings);
+
+            var sameMadbestilling = testrepo.Get(1);
+
+            sameMadbestilling.MenuTekst = "Burger2";
+
+
+            testrepo.Save(sameMadbestilling);
+
+            
+            Assert.Single(testrepo.Get());
+            Assert.Equal(sameMadbestilling.MenuTekst, testrepo.Get(1).MenuTekst);
+        }
+
+        [Fact]
+        public void DeleteMadbestillingFromDatabase()
+        {
+            IMadbestillingRepository testrepo = DataTestService.GetInMemoryRepo();
+
+            var madbestillings = new Madbestillings()
+            {
+                MenuTekst = "Burger",
+                AntalBestillinger = 1
+                
+            };
+
+            testrepo.Save(madbestillings);
+
+
+            testrepo.Delete(testrepo.Get(1).MadbestillingId);
+
+
+            Assert.Empty(testrepo.Get());
+
+        }
+
+        
     }
 } 

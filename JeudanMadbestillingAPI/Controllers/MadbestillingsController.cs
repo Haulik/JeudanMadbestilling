@@ -14,19 +14,18 @@ namespace JeudanMadbestillingAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MadbestillingApiController : ControllerBase
+    public class MadbestillingsController : ControllerBase
     {
         private readonly MadbestillingAPIContext _context;
         private readonly IMapper _mapper;
 
-        public MadbestillingApiController(MadbestillingAPIContext context, IMapper mapper) //Convention over Configuration: The program knows to omit Controller from the name
+        public MadbestillingsController(MadbestillingAPIContext context, IMapper mapper)
         {
-            _mapper = mapper;
             _context = context;
+            _mapper = mapper;
         }
 
-
-        // GET: api/MadbestillingApi
+        // GET: api/Madbestillings
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MadbestillingVM>>> GetMadbestilling()
         {
@@ -34,9 +33,9 @@ namespace JeudanMadbestillingAPI.Controllers
             return _mapper.Map<List<JeudanMadbestilling.Models.Madbestillings>, List<MadbestillingVM>>(madbestillings);
         }
 
-        // GET: api/MadbestillingApi/5
-        [HttpGet("{id:int}")] //If you have multiple GET methods you need to give one of them an attribute with a type like this
-        public async Task<ActionResult<JeudanMadbestilling.Models.Madbestillings>> GetMadbestilling(int id)
+        // GET: api/Madbestillings/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<JeudanMadbestilling.Models.Madbestillings>> GetMadbestillings(int id)
         {
             var madbestillings = await _context.Madbestillings.FindAsync(id);
 
@@ -48,11 +47,11 @@ namespace JeudanMadbestillingAPI.Controllers
             return madbestillings;
         }
 
-        // PUT: api/MadbestillingApi/5
+        // PUT: api/Madbestillings/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMadbestilling(int id, JeudanMadbestilling.Models.Madbestillings madbestillings)
+        public async Task<IActionResult> PutMadbestillings(int id, JeudanMadbestilling.Models.Madbestillings madbestillings)
         {
             if (id != madbestillings.MadbestillingId)
             {
@@ -67,7 +66,7 @@ namespace JeudanMadbestillingAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MadbestillingExists(id))
+                if (!MadbestillingsExists(id))
                 {
                     return NotFound();
                 }
@@ -80,21 +79,21 @@ namespace JeudanMadbestillingAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/MadbestillingApi
+        // POST: api/Madbestillings
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<JeudanMadbestilling.Models.Madbestillings>> PostMadbestilling(JeudanMadbestilling.Models.Madbestillings madbestillings)
+        public async Task<ActionResult<JeudanMadbestilling.Models.Madbestillings>> PostMadbestillings(JeudanMadbestilling.Models.Madbestillings madbestillings)
         {
             _context.Madbestillings.Add(madbestillings);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMadbestilling", new { id = madbestillings.MadbestillingId }, madbestillings);
+            return CreatedAtAction("GetMadbestillings", new { id = madbestillings.MadbestillingId }, madbestillings);
         }
 
-        // DELETE: api/MadbestillingApi/5
+        // DELETE: api/Madbestillings/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<JeudanMadbestilling.Models.Madbestillings>> DeleteMadbestilling(int id)
+        public async Task<ActionResult<JeudanMadbestilling.Models.Madbestillings>> DeleteMadbestillings(int id)
         {
             var madbestillings = await _context.Madbestillings.FindAsync(id);
             if (madbestillings == null)
@@ -108,7 +107,7 @@ namespace JeudanMadbestillingAPI.Controllers
             return madbestillings;
         }
 
-        private bool MadbestillingExists(int id)
+        private bool MadbestillingsExists(int id)
         {
             return _context.Madbestillings.Any(e => e.MadbestillingId == id);
         }

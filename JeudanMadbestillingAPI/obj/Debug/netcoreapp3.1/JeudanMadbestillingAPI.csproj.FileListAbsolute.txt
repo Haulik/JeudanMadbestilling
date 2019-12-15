@@ -141,5 +141,6 @@ C:\Users\thoma\source\repos\JeudanMadbestilling\JeudanMadbestillingAPI\bin\Debug
 C:\Users\thoma\source\repos\JeudanMadbestilling\JeudanMadbestillingAPI\obj\Debug\netcoreapp3.1\JeudanMadbestillingAPI.csproj.CopyComplete
 C:\Users\thoma\source\repos\JeudanMadbestilling\JeudanMadbestillingAPI\bin\Debug\netcoreapp3.1\AutoMapper.dll
 C:\Users\thoma\source\repos\JeudanMadbestilling\JeudanMadbestillingAPI\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\thoma\source\repos\JeudanMadbestilling\JeudanMadbestillingAPI\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\thoma\source\repos\JeudanMadbestilling\JeudanMadbestillingAPI\obj\Debug\netcoreapp3.1\JeudanMadbestillingAPI.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\thoma\source\repos\JeudanMadbestilling\JeudanMadbestillingAPI\obj\Debug\netcoreapp3.1\JeudanMadbestillingAPI.MvcApplicationPartsAssemblyInfo.cache

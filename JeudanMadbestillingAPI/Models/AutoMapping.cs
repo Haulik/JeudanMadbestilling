@@ -9,6 +9,7 @@ namespace JeudanMadbestillingAPI.Models
         public AutoMapping()
         {
             CreateMap<JeudanMadbestilling.Models.Madbestillings, MadbestillingVM>();
+            
         }
     }
 }

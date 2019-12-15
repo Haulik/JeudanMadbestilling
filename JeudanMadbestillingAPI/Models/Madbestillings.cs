@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace JeudanMadbestillingAPI.Models
 {
-    public class Madbestilling
+    public class Madbestillings
     {
         public int MadbestillingId { get; set; }
         public string MenuTekst { get; set; }
 
-        public Madbestilling()
+        public Madbestillings()
         {
         }
     }
